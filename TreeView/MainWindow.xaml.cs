@@ -15,24 +15,7 @@ namespace TreeView
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            foreach (var drive in Directory.GetLogicalDrives())
-            {
-                var item = new TreeViewItem()
-                {
-                    Header = drive,
-                    Tag = drive,
-                };
-                
-
-                item.Items.Add(null);
-
-                item.Expanded += Folder_Expanded;
-
-                FolderView.Items.Add(item);
-            }
-        }
+     
 
         private void Folder_Expanded(object sender, RoutedEventArgs e)
         {
@@ -109,18 +92,6 @@ namespace TreeView
 
             #endregion
         }
-        public static string GetFileFolderName(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-                return string.Empty;
-            var normalizedPath = path.Replace('/', '\\');
-
-            var lastIndex = normalizedPath.LastIndexOf('\\');
-
-            if (lastIndex <= 0)
-                return path;
-
-            return path.Substring(lastIndex + 1);
-        }
+       
     }
 }
