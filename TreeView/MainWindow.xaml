@@ -10,8 +10,8 @@
         >
     <ScrollViewer>
         <StackPanel>
-            <Button Content="{Binding test}"/>
-            <TreeView x:Name="FolderView" ScrollViewer.CanContentScroll="False">
+            
+            <TreeView x:Name="FolderView" ItemsSource="{Binding Items}" ScrollViewer.CanContentScroll="False">
                 <TreeView.Resources>
                     <Style TargetType="{x:Type TreeViewItem}">
                         <Setter Property="HeaderTemplate">

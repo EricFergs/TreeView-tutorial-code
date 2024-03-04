@@ -14,7 +14,7 @@ namespace TreeView
         {
             InitializeComponent();
 
-            this.DataContext = new Class1();
+            this.DataContext = new DirectoryStructureViewModel();
         }
 
      
