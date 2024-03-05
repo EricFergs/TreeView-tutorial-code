@@ -10,26 +10,27 @@ using System.Windows.Media.Imaging;
 
 namespace TreeView
 {
-    [ValueConversion(typeof(string),typeof(BitmapImage))]
+    [ValueConversion(typeof(DirectoryItemType),typeof(BitmapImage))]
     public class HeaderToImageConverter : IValueConverter
     {
 
         public static HeaderToImageConverter Instance = new HeaderToImageConverter();
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var path = (string)value;
-            if (path == null)
-                return null;
+           
 
-            var name = DirectoryStructure.GetFileFolderName(path);
+          
             var image = "Images/file.png";
 
-            if (string.IsNullOrEmpty(name))
-                image = "Images/drive.png";
-            else if (new FileInfo(path).Attributes.HasFlag(FileAttributes.Directory))
-                image = "Images/folder-closed.png";
-
-                
+            switch ((DirectoryItemType)value)
+            {
+                case DirectoryItemType.Drive:
+                    image = "Images/drive.png";
+                    break;
+                case DirectoryItemType.Folder:
+                    image = "Images/folder-closed.png";
+                    break;
+            }  
             return new BitmapImage(new Uri($"pack://application:,,,/{image}"));
         }
 
